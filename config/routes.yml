@@ -1,0 +1,22 @@
+youtube:
+    path: youtuber
+    methods: [GET]
+    defaults:
+      _controller: 'Myyoutubemc\Controller\YoutubeController::demoAction'
+      
+youtube-create:
+    path: youtuber/create
+    methods: [GET, POST]
+    defaults:
+      _controller: 'Myyoutubemc\Controller\YoutubeController::createAction'
+youtube-delete:
+    path: youtuber/delete/{id}
+    methods: [GET]
+    defaults:
+      _controller: 'Myyoutubemc\Controller\YoutubeController::deleteAction'
+
+youtube-list:
+    path: youtuber/list
+    methods: [GET]
+    defaults:
+      _controller: 'Myyoutubemc\Controller\YoutubeController::listAction'

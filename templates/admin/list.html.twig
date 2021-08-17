@@ -1,0 +1,40 @@
+{% extends "PrestaShopBundle:Admin:layout.html.twig" %}
+{% block content %}
+
+{% for message in app.flashes('notice') %}
+    <div class="flash-notice">
+        {{ message }}
+    </div>
+{% endfor %}
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>customer Name</th>
+      <th>Title</th>
+      <th>Content</th>
+      <th>grade</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+ 
+  <tbody>
+{% for youtube in data %}
+    <tr>
+      <td>{{ youtube.productId }}</td>
+      <td>{{ youtube.customerName }}</td>
+      <td>{{ youtube.title }}</td>
+      <td>{{ youtube.content }}</td>
+      <td>{{ youtube.grade }}</td>
+      <td>
+      
+    <a href="{{ path('youtube-create', {'id':  youtube.id }) }}" class="btn btn-primary">Update</a>
+    <a href="{{ path('youtube-delete', {'id':youtube.id  })}}" class="btn btn-danger">Delete</a>
+      </td>
+    </tr>
+
+{% endfor %}
+</tbody>
+</table>
+{% endblock %}

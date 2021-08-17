@@ -1,0 +1,13 @@
+{
+    "name": "mohamed/youtubeexaple",
+    "description": "A controller that handle youtube",
+    "autoload": {
+        "psr-4": {
+            "Myyoutubemc\\":  "src/"
+        }
+    },
+    "config": {
+        "prepend-autoloader": false
+    },
+    "type": "prestashop-module"
+}
