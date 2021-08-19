@@ -83,6 +83,9 @@ class YoutubeComment
         return $this;
     }
 
+public function setId($id) {
+    $this->id = $id;
+}
     /**
      * @return string
      */

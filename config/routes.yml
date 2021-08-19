@@ -9,6 +9,14 @@ youtube-create:
     methods: [GET, POST]
     defaults:
       _controller: 'Myyoutubemc\Controller\YoutubeController::createAction'
+
+youtube-update:
+    path: youtuber/update/{id}
+    methods: [GET, POST]
+    defaults:
+      _controller: 'Myyoutubemc\Controller\YoutubeController::updateAction'
+
+
 youtube-delete:
     path: youtuber/delete/{id}
     methods: [GET]

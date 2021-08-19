@@ -16,7 +16,7 @@ class YoutubeType extends AbstractType {
         $builder
         ->add('id', HiddenType::class , array(
             "attr" => array(
-                "placeholder" => "The id_product_comment"
+                "placeholder" => "The id_product_comment",
             )
         ))
         ->add('productId', TextType::class , array(

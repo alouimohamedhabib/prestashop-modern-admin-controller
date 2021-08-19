@@ -47,6 +47,47 @@ class YoutubeController extends FrameworkBundleAdminController
 
         return $this->redirectToRoute('youtube-list');
     }
+
+    public function updateAction(int $id, Request $request)
+    {
+        if ($id === null)
+            return null; // better display an error message here
+
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $youtubeCommentForUpdate = $entityManager
+            ->getRepository(YoutubeComment::class)
+            ->find($id);
+
+        $form = $this->createForm(YoutubeType::class, $youtubeCommentForUpdate);
+        $form->handleRequest($request);
+        // logic of form handling
+        if (
+            $form->isSubmitted()
+            && $form->isValid()
+        ) {
+            $youtubeCommentForUpdate->setProductId($form->get('productId')->getData());
+            $youtubeCommentForUpdate->setCustomerName($form->get('customer_name')->getData());
+            $youtubeCommentForUpdate->setTitle($form->get('title')->getData());
+            $youtubeCommentForUpdate->setContent($form->get('content')->getData());
+            $youtubeCommentForUpdate->setGrade($form->get('grade')->getData());
+            //$entityManager->persist(); NO NEED
+            $entityManager->flush();
+
+            $this->addFlash(
+                'success',
+                'Comment updated successfully'
+            );
+            return $this->redirectToRoute('youtube-list');
+
+        }
+        return $this->render(
+            '@Modules/myyoutubemc/templates/admin/create.html.twig',
+            [
+                'form' => $form->createView()
+            ]
+        );
+    }
     public function createAction(Request $request)
     {
         // logic to store the data to the DB
@@ -55,9 +96,9 @@ class YoutubeController extends FrameworkBundleAdminController
         if ($id = $request->get('id')) {
             dump($request->get('id'));
             $youtubeComment = $this->getDoctrine()
-            ->getRepository(YoutubeComment::class)
-            ->find($id);
-            
+                ->getRepository(YoutubeComment::class)
+                ->find($id);
+
             // $em->getRepository(YoutubeComment::class)->findOneBy(["id_product_comment" => $id]);
             dump($youtubeComment);
             $form = $this->createForm(YoutubeType::class, $youtubeComment);
